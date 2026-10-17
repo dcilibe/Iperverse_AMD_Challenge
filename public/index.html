@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <meta name="theme-color" content="#080d1c"/>
+  <title>Evolving Arena — AI World Director</title>
+  <link rel="stylesheet" href="/style.css"/>
+</head>
+<body>
+<main class="shell">
+  <header class="header">
+    <div><div class="eyebrow">AMD ACT III · INDEPENDENT CHALLENGE ENTRY</div><h1>EVOLVING <span>ARENA</span></h1><p>One arena. Infinite adaptations. Powered by an AI World Director.</p></div>
+    <div class="provider"><small>INFERENCE SOURCE</small><strong id="source">Checking server…</strong><span id="model">Waiting for an evolution</span></div>
+  </header>
+  <section class="stats" aria-label="Game status">
+    <div><small>HEALTH</small><b id="hp">100</b></div>
+    <div><small>ELIMINATIONS</small><b id="kills">0</b></div>
+    <div><small>EVOLUTION</small><b id="level">01</b></div>
+    <div><small>ENEMY TACTICS</small><b id="strategy">RUSH</b></div>
+    <div><small>BIOME</small><b id="biome">NEON</b></div>
+    <div><small>WORLD AI</small><b id="latency">–</b></div>
+  </section>
+  <div class="gamebox">
+    <canvas id="arena" width="960" height="560" aria-label="Top down combat arena"></canvas>
+    <div class="stage-label"><span class="dot"></span><span id="worldLabel">WORLD 01 · NEON SECTOR</span></div>
+    <div class="toast" id="toast" role="status">An unstable world is waking up.</div>
+    <div class="overlay" id="overlay">
+      <div class="panel"><div class="eyebrow">SURVIVE · ADAPT · EVOLVE</div><h2 id="overlayTitle">THE ARENA IS ALIVE</h2><p id="overlayDescription">Enemies adapt to your play style. Survive long enough or press E to summon a new AI-generated world directive.</p><button id="play">START GAME</button><div class="controls">WASD / ARROWS · MOVE &nbsp; SPACE / CLICK · PULSE ATTACK &nbsp; E · EVOLVE</div></div>
+    </div>
+  </div>
+  <footer class="footer"><span>2D browser prototype · AI directives validated on the backend</span><span id="info">Preparing game…</span></footer>
+</main>
+<script type="module" src="/main.js"></script>
+</body>
+</html>
