@@ -35,12 +35,14 @@ export function collideCircle(point, radius, obstacles) {
   return obstacles.some(o => distance(point, o) < o.r + radius);
 }
 export function moveInside(entity, dx, dy, obstacles, radius) {
-  const nextX = clamp(entity.x + dx, radius + 8, WIDTH - radius - 8);
-  const xCandidate = { x: nextX, y: entity.y };
-  if (!collideCircle(xCandidate, radius, obstacles)) entity.x = nextX;
-  const nextY = clamp(entity.y + dy, radius + 8, HEIGHT - radius - 8);
-  const yCandidate = { x: entity.x, y: nextY };
-  if (!collideCircle(yCandidate, radius, obstacles)) entity.y = nextY;
+  // Sweep motion in small increments to prevent high-speed collision tunneling.
+  const steps = Math.max(1, Math.ceil(Math.max(Math.abs(dx), Math.abs(dy)) / 8));
+  for (let step = 0; step < steps; step++) {
+    const nextX = clamp(entity.x + dx / steps, radius + 8, WIDTH - radius - 8);
+    if (!collideCircle({ x: nextX, y: entity.y }, radius, obstacles)) entity.x = nextX;
+    const nextY = clamp(entity.y + dy / steps, radius + 8, HEIGHT - radius - 8);
+    if (!collideCircle({ x: entity.x, y: nextY }, radius, obstacles)) entity.y = nextY;
+  }
 }
 export function tacticalDirection(enemy, player, strategy, time = 0) {
   const dx = player.x - enemy.x, dy = player.y - enemy.y;
